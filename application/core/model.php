@@ -47,10 +47,10 @@ class Model
                 description TEXT, 
                 status INTEGER DEFAULT 0,
                 created_at INTEGER
-            )
+            ),
 
-            -- INSERT INTO tasks(email, username, description, created_at) VALUES('kapver@gmail.com', 'kapver', 'some task description', {$time}),
-            -- INSERT INTO tasks(email, username, description, created_at) VALUES('dmitryznak@gmail.com', 'dznak', 'some task description 2', {$time})
+            INSERT INTO tasks(email, username, description, created_at) VALUES('kapver@gmail.com', 'kapver', 'some task description', {$time}),
+            INSERT INTO tasks(email, username, description, created_at) VALUES('dmitryznak@gmail.com', 'dznak', 'some task description 2', {$time})
 SQL;
 
         Model_Tasks::exec($sql);
