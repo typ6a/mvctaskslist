@@ -3,9 +3,16 @@
 class Model_Tasks extends Model
 {
 	
+	public static function getTasks()
+	{
+		return self::query('SELECT * FROM tasks')->fetch(\PDO::FETCH_ASSOC);
+	}
+
 	public function get_data()
 	{	
 		
+
+
 		return array(
 			
 			array(
