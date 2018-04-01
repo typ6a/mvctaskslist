@@ -1,4 +1,6 @@
 <h3 align="center">CREATE NEW TASK</h3>
+<?= pre(__DIR__)?>
+<div>
 <form method="POST" action="http://mvc.localhost/tasks/save">
   <div class="form-group">
     <label>Email</label>
@@ -11,12 +13,19 @@
   </div>
   <div class="form-group">
     <label>Task</label>
-    <textarea name="text" class="form-control" id="" rows="3"></textarea>
+    <textarea name="description" class="form-control" id="" rows="3"></textarea>
   </div>
+
   <div class="form-group">
     <label>Picture upload</label>
-    <input type="file" class="form-control-file" id="">
+    <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+    <input type="file" class="form-control-file" value="Send File" id="">
   </div>
-  <button type="submit" class="btn btn-light"><a href="/">Preview</button>
-  <input type="submit" value="">
+  <input type="submit" value="Add">
 </form>
+  
+
+<form method="POST" action="http://mvc.localhost/tasks/preview">
+  <button type="submit" class="btn btn-light">Preview</button>
+</form>
+</div>

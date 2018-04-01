@@ -27,10 +27,10 @@ SQL;
 		return self::query($sql)->fetch()[0];
 	}
 
-	public static function save()
+	public static function save($fields)
 	{
 
-		pre('PRIVET',1);
+		pre($fields,1);
 
 		$sql = <<<SQL
 			SELECT COUNT(id)
