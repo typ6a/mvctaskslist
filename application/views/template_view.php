@@ -8,7 +8,7 @@
   </head>
   <body>
   <div class="btn-group">
-	  <button type="button" class="btn btn-light"><a href="/">Главная</a></button>
+	  <button type="button" class="btn btn-light"><a href="/">Home</a></button>
 	  <button type="button" class="btn btn-light"><a href="/login">login</a></button>
 	  <button type="button" class="btn btn-light"><a href="/logout">logout</a></button>
 	</div>

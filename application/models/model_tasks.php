@@ -3,76 +3,40 @@
 class Model_Tasks extends Model
 {
 	
-	public static function getTasks()
+	public static function getTasks($page = 1, $per_page = 3)
 	{
-		return self::query('SELECT * FROM tasks')->fetchAll(\PDO::FETCH_ASSOC);
+		$OFFSET = ($page - 1) * $per_page;
+
+		$sql = <<<SQL
+			SELECT * 
+			FROM tasks  
+			LIMIT {$OFFSET},{$per_page}
+SQL;
+
+		//pre($sql,1);
+	
+		return self::query($sql)->fetchAll(\PDO::FETCH_ASSOC);
 	}
 
-	public function get_data()
-	{	
-		
+	public static function getTasksTotal()
+	{
+		$sql = <<<SQL
+			SELECT COUNT(id)
+			FROM tasks  
+SQL;
+		return self::query($sql)->fetch()[0];
+	}
 
+	public static function save()
+	{
 
-		return array(
-			
-			array(
-				'Task' => 'make a csv app',
-				'UserName' => 'Dmitry',
-				'UserEmail' => 'd@example.com',
-				'status' => 'do'
-			),
+		pre('PRIVET',1);
 
-			array(
-				'Task' => 'drink cup of coffee',
-				'UserName' => 'Вася',
-				'UserEmail' => 'vas@example.com',
-				'status' => 'do'
-			),
-
-			array(
-				'Task' => 'drink cup of tea',
-				'UserName' => 'Dmitry',
-				'UserEmail' => 'd@example.com',
-				'status' => 'do'
-			),
-
-			array(
-				'Task' => 'learn english',
-				'UserName' => 'vova',
-				'UserEmail' => 'vovan@example.com',
-				'status' => 'done'
-			),
-
-			array(
-				'Task' => 'watch TV',
-				'UserName' => 'Lena',
-				'UserEmail' => 'l@example.com',
-				'status' => 'do'
-			),
-
-			array(
-				'Task' => 'go to the gym',
-				'UserName' => 'Masha',
-				'UserEmail' => 'maria@example.com',
-				'status' => 'do'
-			),
-
-			array(
-				'Task' => 'get the php jr dev job',
-				'UserName' => 'max',
-				'UserEmail' => 'max@example.com',
-				'status' => 'done'
-			),
-
-			array(
-				'Task' => 'make money',
-				'UserName' => 'petr',
-				'UserEmail' => 'petya@example.com',
-				'status' => 'do'
-			),
-
-			
-		);
+		$sql = <<<SQL
+			SELECT COUNT(id)
+			FROM tasks  
+SQL;
+		return self::query($sql)->fetch()[0];
 	}
 
 }

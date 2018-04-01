@@ -10,56 +10,56 @@ class Controller_Tasks extends Controller
 	
 	function action_index()
 	{
-		$tasks = Model_Tasks::getTasks();
+		$page = get_data($_GET, 'page', 1) ? : null;
+
+		$limit = 3;
+
+		$total_tasks = Model_Tasks::getTasksTotal();
+
+		$total_pages = ceil($total_tasks/$limit);
+
+		$tasks = Model_Tasks::getTasks($page, $limit);
 		$this->view->generate('tasks_view.php', 'template_view.php', [
 			'tasks' => $tasks,
 			'other_variable' => 'bla bla',
+			'total_pages' => $total_pages,
+			'limit' => $limit,
 		]);
 	}
 
 	function action_add()
 	{
-
-		//$this->view->generate('add_view.php', 'template_view.php', $data);
+		$data =[];
+		$this->view->generate('add_view.php', 'template_view.php', $data);
 	}
 
 	function action_save()
 	{
-		//$username = $_POST['username'];
-		//$email = $_POST['email'];
+		$fields = [];
 
-		// NEED MOVE CODE BELOW to Model_Tasks save method 						!!!!!!!!!!!!!
+		$errors = []; 
 
-		$data = [
-			'email' 	  => 'someemail@gmail.com',
-			'username' 	  => 'some_username',
-			'description' => 'some task description 3',
-			'created_at'  => time(),
-		];
+		if(!$errors){
 
-		$sql = <<<SQL
-			INSERT INTO tasks(
-				email, 
-				username, 
-				description, 
-				created_at
-			) VALUES(
-				"{$data['email']}",
-				"{$data['username']}",
-				"{$data['description']}",
-				{$data['created_at']}
-			)
-SQL;
+			// pre('wawds',1);
 
-		//pre($sql,1);
+			$fields = [
+				'email' 	  => 'someemail@gmail.com',
+				'username' 	  => 'some_username',
+				'description' => 'some task description 3',
+				'created_at'  => time(),
+			];
 
-		$res = Model_Tasks::exec($sql);
+			$mt = new Model_Tasks();
+			$mt->save();
+			Model_Tasks::save($fields);
 
-		pre($res,1);
+		} else {
+			$this->view->generate('add_view.php', 'template_view.php', [
+				'errors' => $errors,
+			]);
 
-		// redirect to tasks list
-
-		//$this->view->generate('add_view.php', 'template_view.php', $data);
+		}		
 	}
 
 }
