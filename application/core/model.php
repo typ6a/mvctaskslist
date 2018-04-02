@@ -16,7 +16,8 @@ class Model
         if (self::$pdo === null) {
             self::$pdo = new \PDO("sqlite:" . self::PATH_TO_SQLITE_FILE);
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } return self::$pdo;
+        } 
+        return self::$pdo;
     }
 
     public static function pdo()
@@ -34,27 +35,5 @@ class Model
     {
         return self::pdo()->exec($query);
     }
-
-//     public static function fixtures()
-//     {
-//         $time = time();
-
-//         $sql = <<<SQL
-//             CREATE TABLE IF NOT EXISTS tasks (
-//                 id INTEGER PRIMARY KEY, 
-//                 email TEXT,
-//                 username TEXT,
-//                 description TEXT, 
-//                 status INTEGER DEFAULT 0,
-//                 filename TEXT,   
-//                 created_at INTEGER
-//             ),
-
-//             INSERT INTO tasks(email, username, description, created_at) VALUES('kapver@gmail.com', 'kapver', 'some task description', {$time}),
-//             INSERT INTO tasks(email, username, description, created_at) VALUES('dmitryznak@gmail.com', 'dznak', 'some task description 2', {$time})
-// SQL;
-
-//         Model_Tasks::exec($sql);
-//     }
 
 }

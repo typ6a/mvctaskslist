@@ -1,13 +1,10 @@
 <?php
-
 class Controller_Login extends Controller
 {
 	
 	function action_index()
 	{
-
 		$errors = [];
-
 		if(isPost()){
 			if(!empty($_POST['login']) && !empty($_POST['password']))
 			{
@@ -29,7 +26,6 @@ class Controller_Login extends Controller
 			}
 			
 		}
-
 		$this->view->generate('login_view.php', 'template_view.php', [
 			'errors' => $errors
 		]);
