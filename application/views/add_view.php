@@ -16,39 +16,32 @@
         </div>
         <div class="form-group">
             <label>Picture upload</label>
-            <input type="hidden" name="MAX_FILE_SIZE" value="30000000000" id="uploadFiile" />
-            <input type="file" name="image" class="form-control-file" value="Send File" id="">
-            <img id="blah" src="#" alt="your image" />
+            <input type="hidden" name="MAX_FILE_SIZE" value="30000000000" />
+            <input type="file" name="image" class="form-control-file" value="Send File" id="uploadFiile" />
+            <img id="preview_image" src="#" alt="your image" />
         </div>
         <button type="submit" class="btn btn-light" value="Add">Add</button>
     </form>
     
-    <button class="btn btn-light" onclick="readURL(this);">Preview</button>
+    <button class="btn btn-light" onclick="readURL();">Preview</button>
   
 </div>
 
 <script type="text/javascript">
-   function readURL() {
 
-        $('#uploadFiile').change(function(input){
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+    function readURL() {
+        var input = $('#uploadFiile')[0];
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-                reader.onload = function (e) {
-                  alert($('#blah').length);
-                    $('#blah')
-                        .attr('src', e.target.result)
-                        .width(320)
-                        .height(240);
-                };
+            reader.onload = function (e) {
+                $('#preview_image')
+                .attr('src', e.target.result)
+                .width(320);
+            };
 
-                reader.readAsDataURL(input.files[0]);
-            }
-        });
-        
-        $('#uploadFiile').trigger('change');
-
-
+            reader.readAsDataURL(input.files[0]);
+        }
     }
 
 </script>
