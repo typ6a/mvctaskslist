@@ -5,29 +5,38 @@ class Controller_Login extends Controller
 	
 	function action_index()
 	{
-		if(isset($_POST['login']) && isset($_POST['password']))
-		{
-			$login = $_POST['login'];
-			$password =$_POST['password'];
-			if($login=="admin" && $password=="123")
+
+		$errors = [];
+
+		if(isPost()){
+			if(!empty($_POST['login']) && !empty($_POST['password']))
 			{
-				$data["login_status"] = "access_granted";
-				
-				session_start(); echo $_SESSION['admin'];
-				$_SESSION['admin'] = $password;
-				header('Location:/admin/');
+				$login = $_POST['login'];
+				$password = $_POST['password'];
+				if($login == "admin" && $password == "123")
+				{
+					$_SESSION['is_admin'] = 1;
+					header('Location: ' . base_url('tasks/index'));
+				}
+				else
+				{
+					$errors[] = 'Wrong login or password.';
+				}
 			}
 			else
 			{
-				$data["login_status"] = "access_denied";
+				$errors[] = 'Empty data.';
 			}
+			
 		}
-		else
-		{
-			$data["login_status"] = "";
-		}
-		
-		$this->view->generate('login_view.php', 'template_view.php', $data);
+
+		$this->view->generate('login_view.php', 'template_view.php', [
+			'errors' => $errors
+		]);
 	}
 	
+	function action_logout(){
+		unset($_SESSION['is_admin']);
+		redirect(base_url());
+	}
 }

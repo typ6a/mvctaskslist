@@ -35,25 +35,26 @@ class Model
         return self::pdo()->exec($query);
     }
 
-    public static function fixtures()
-    {
-        $time = time();
+//     public static function fixtures()
+//     {
+//         $time = time();
 
-        $sql = <<<SQL
-            CREATE TABLE IF NOT EXISTS tasks (
-                id INTEGER PRIMARY KEY, 
-                email TEXT,
-                username TEXT,
-                description TEXT, 
-                status INTEGER DEFAULT 0,
-                created_at INTEGER
-            ),
+//         $sql = <<<SQL
+//             CREATE TABLE IF NOT EXISTS tasks (
+//                 id INTEGER PRIMARY KEY, 
+//                 email TEXT,
+//                 username TEXT,
+//                 description TEXT, 
+//                 status INTEGER DEFAULT 0,
+//                 filename TEXT,   
+//                 created_at INTEGER
+//             ),
 
-            INSERT INTO tasks(email, username, description, created_at) VALUES('kapver@gmail.com', 'kapver', 'some task description', {$time}),
-            INSERT INTO tasks(email, username, description, created_at) VALUES('dmitryznak@gmail.com', 'dznak', 'some task description 2', {$time})
-SQL;
+//             INSERT INTO tasks(email, username, description, created_at) VALUES('kapver@gmail.com', 'kapver', 'some task description', {$time}),
+//             INSERT INTO tasks(email, username, description, created_at) VALUES('dmitryznak@gmail.com', 'dznak', 'some task description 2', {$time})
+// SQL;
 
-        Model_Tasks::exec($sql);
-    }
+//         Model_Tasks::exec($sql);
+//     }
 
 }
