@@ -5,3 +5,5 @@ RewriteRule .* index.php [L]
 
 php_value post_max_size 40M 
 php_value upload_max_filesize 30M 
+
+RewriteCond %{REQUEST_FILENAME} !^dayside.*$

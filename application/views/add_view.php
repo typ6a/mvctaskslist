@@ -27,15 +27,13 @@
 
 <script type="text/javascript">
 function readURL() {
-var input = $('#uploadFiile')[0];
-if (input.files && input.files[0]) {
-var reader = new FileReader();
-reader.onload = function (e) {
-$('#preview_image')
-.attr('src', e.target.result)
-.width(320);
-};
-reader.readAsDataURL(input.files[0]);
-}
+    var input = $('#uploadFiile')[0];
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#preview_image').attr('src', e.target.result).width(320);
+        };
+    reader.readAsDataURL(input.files[0]);
+    }
 }
 </script>
